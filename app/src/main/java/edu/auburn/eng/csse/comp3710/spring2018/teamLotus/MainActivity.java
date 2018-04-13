@@ -10,4 +10,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    
+    @Override 
+    protected void onStart(Bundle savedInstanceState) {
+        super.onStart(savedInstanceState);
+    }
+    
+    @Override
+    protected void onPause(savedInstanceState) {
+        super.onPause(savedInstanceState);
+    }
 }
