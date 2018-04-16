@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="##0099cc"
     tools:context="edu.auburn.eng.csse.comp3710.spring2018.teamLotus.MainActivity">
 
-    <Button
-        android:id="@+id/Hard_Diff"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hard"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="169dp" />
 
     <Button
-        android:id="@+id/Medium_Diff"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="121dp" />
-
-    <Button
-        android:id="@+id/Easy_Diff"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/EasyButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="173dp"
+        android:background="#ffffff"
         android:text="Easy"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="73dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20pt"
+        />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/MediumButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="177dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="276dp"
+        android:text="Medium"
+        android:textSize="20pt" />
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="141dp" />
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="266dp" />
 
-</android.support.constraint.ConstraintLayout>
+        />
+</RelativeLayout>
