@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     int current;
     long difficulty;
     boolean correct = true;
+    int i = 0;
+    final int[] array = new int[9];
 
     /*  TODO: maybe make a loop to keep displaying the patterns
         TODO: And it only plays again if the user input is correct
@@ -65,34 +67,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         myLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 int rand;
 
 
-                int i = 0;
-                int[] array = new int[40];
 
                 if (correct == true) {
 
                         correct = false;
                         rand = mRandom.nextInt(4);
                         array[++i] = rand;
-                        Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
 
                         for (int index = 0; index <= current; index++) {
                             switch (array[index]) {
                                 case 0:
                                     red_clicked.setVisibility(View.VISIBLE);
-                                    //Toast.makeText(getApplicationContext(), "r", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "r", Toast.LENGTH_SHORT).show();
 
                                     mHandler.postDelayed(new Runnable() {
                                         //@Override
                                         public void run() {
                                             red_clicked.setVisibility(View.INVISIBLE);
-                                            Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
                                         }
                                     }, difficulty);
                                     break;
@@ -136,10 +135,14 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         }
-                    current++;
+                        current++;
+                        i=0;
                 }
-
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                if (i == current)
+                {
+                    correct = true;
+                }
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP && !correct) {
                     x = motionEvent.getX();
                     y = motionEvent.getY();
 
@@ -148,72 +151,95 @@ public class MainActivity extends AppCompatActivity {
                     //if blue is released
                     if (x > 700 && x < 1240) {
                         if (y > 1145 && y < 1700) {
-
-                            correct = true;
-
-                            blue_clicked.setVisibility(View.VISIBLE);
-
-                            mHandler.postDelayed(new Runnable() {
-                                //@Override
-                                public void run() {
-                                    blue_clicked.setVisibility(View.INVISIBLE);
+                            if (array[i] == 3) {
 
 
-                                }
-                            }, 500);
+                                i++;
+
+                                blue_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        blue_clicked.setVisibility(View.INVISIBLE);
+
+
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                     //if green is released
-                    if (x > 140 && x < 699) {
+                     if (x > 140 && x < 699) {
                         if (y > 1145 && y < 1700) {
-                            correct = true;
+                            if (array[i] == 2) {
 
-                            green_clicked.setVisibility(View.VISIBLE);
+                                i++;
 
-                            mHandler.postDelayed(new Runnable() {
-                                //@Override
-                                public void run() {
-                                    green_clicked.setVisibility(View.INVISIBLE);
+                                green_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        green_clicked.setVisibility(View.INVISIBLE);
 
 
-                                }
-                            }, 500);
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
 
                         }
                     }
                     //red
                     if (x > 140 && x < 699) {
                         if (y > 590 && y < 1144) {
-                            correct = true;
+                            if (array[i] == 0) {
 
-                            red_clicked.setVisibility(View.VISIBLE);
+                                i++;
 
-                            mHandler.postDelayed(new Runnable() {
-                                //@Override
-                                public void run() {
-                                    red_clicked.setVisibility(View.INVISIBLE);
+                                red_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        red_clicked.setVisibility(View.INVISIBLE);
 
 
-                                }
-                            }, 500);
-
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                     //yellow
-                    if (x > 700 && x < 1240) {
+                     if (x > 700 && x < 1240) {
                         if (y > 590 && y < 1144) {
-                            correct = true;
+                            if (array[i] == 1) {
 
-                            yellow_clicked.setVisibility(View.VISIBLE);
+                                i++;
 
-                            mHandler.postDelayed(new Runnable() {
-                                //@Override
-                                public void run() {
-                                    yellow_clicked.setVisibility(View.INVISIBLE);
+                                yellow_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        yellow_clicked.setVisibility(View.INVISIBLE);
 
 
-                                }
-                            }, 500);
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
 
