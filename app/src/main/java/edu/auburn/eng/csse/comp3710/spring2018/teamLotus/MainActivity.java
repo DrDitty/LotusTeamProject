@@ -64,156 +64,163 @@ public class MainActivity extends AppCompatActivity {
         current = 0;
 
 
-        for (;current <= max;current++) {
-
-            myLayout.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    int rand;
-                    rand = mRandom.nextInt(4);
-
-                    int i = 0;
-                    int[] array = new int[max];
 
 
-                    if (correct) {
+        myLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int rand;
+
+
+                int i = 0;
+                int[] array = new int[40];
+
+                if (correct == true) {
+
                         correct = false;
+                        rand = mRandom.nextInt(4);
+                        array[++i] = rand;
+                        Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
 
-                        if (i <= current) {
-                            array[i] = rand;
-
-                            switch (rand) {
+                        for (int index = 0; index <= current; index++) {
+                            switch (array[index]) {
                                 case 0:
                                     red_clicked.setVisibility(View.VISIBLE);
+                                    //Toast.makeText(getApplicationContext(), "r", Toast.LENGTH_SHORT).show();
+
+                                    mHandler.postDelayed(new Runnable() {
+                                        //@Override
+                                        public void run() {
+                                            red_clicked.setVisibility(View.INVISIBLE);
+                                            Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }, difficulty);
                                     break;
                                 case 1:
                                     yellow_clicked.setVisibility(View.VISIBLE);
+                                    Toast.makeText(getApplicationContext(), "y", Toast.LENGTH_SHORT).show();
+                                    mHandler.postDelayed(new Runnable() {
+                                        //@Override
+                                        public void run() {
+                                            yellow_clicked.setVisibility(View.INVISIBLE);
+
+                                        }
+                                    }, difficulty);
                                     break;
                                 case 2:
                                     green_clicked.setVisibility(View.VISIBLE);
+                                    Toast.makeText(getApplicationContext(), "g", Toast.LENGTH_SHORT).show();
+                                    mHandler.postDelayed(new Runnable() {
+                                        //@Override
+                                        public void run() {
+                                            green_clicked.setVisibility(View.INVISIBLE);
+
+                                        }
+                                    }, difficulty);
                                     break;
-                                case 3: //blue. change to red when you're done testing
+                                case 3: //blue
                                     blue_clicked.setVisibility(View.VISIBLE);
+                                    Toast.makeText(getApplicationContext(), "b", Toast.LENGTH_SHORT).show();
+                                    mHandler.postDelayed(new Runnable() {
+                                        //@Override
+                                        public void run() {
+                                            blue_clicked.setVisibility(View.INVISIBLE);
+
+                                        }
+                                    }, difficulty);
+
                                     break;
                                 default:
+                                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                                     break;
 
                             }
-                            if (blue_clicked.getVisibility() == View.VISIBLE || green_clicked.getVisibility() == View.VISIBLE || red_clicked.getVisibility() == View.VISIBLE || yellow_clicked.getVisibility() == View.VISIBLE ) {
-
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        blue_clicked.setVisibility(View.INVISIBLE);
-                                        red_clicked.setVisibility(View.INVISIBLE);
-                                        yellow_clicked.setVisibility(View.INVISIBLE);
-                                        green_clicked.setVisibility(View.INVISIBLE);
-                                    }
-                                }, difficulty);
-                            }
-
                         }
-
-                        i++;
-                    }
-
-                    if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                        x = motionEvent.getX();
-                        y = motionEvent.getY();
-
-                        //Toast.makeText(getApplicationContext(), String.valueOf(y), Toast.LENGTH_SHORT).show();
-
-                        //if blue is released
-                        if (x > 700 && x < 1240) {
-                            if (y > 1145 && y < 1700) {
-
-                                correct = true;
-                                current++;
-
-                                blue_clicked.setVisibility(View.VISIBLE);
-
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        blue_clicked.setVisibility(View.INVISIBLE);
-
-
-                                    }
-                                }, 500);
-                            }
-                        }
-                        //if green is released
-                        if (x > 140 && x < 699) {
-                            if (y > 1145 && y < 1700) {
-                                correct = true;
-                                current++;
-
-                                green_clicked.setVisibility(View.VISIBLE);
-
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        green_clicked.setVisibility(View.INVISIBLE);
-
-
-                                    }
-                                }, 500);
-
-                            }
-                        }
-                        //red
-                        if (x > 140 && x < 699) {
-                            if (y > 590 && y < 1144) {
-                                correct = true;
-                                current++;
-
-                                red_clicked.setVisibility(View.VISIBLE);
-
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        red_clicked.setVisibility(View.INVISIBLE);
-
-
-                                    }
-                                }, 500);
-
-                            }
-                        }
-                        //yellow
-                        if (x > 700 && x < 1240) {
-                            if (y > 590 && y < 1144) {
-                                correct = true;
-                                current++;
-
-                                yellow_clicked.setVisibility(View.VISIBLE);
-
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        yellow_clicked.setVisibility(View.INVISIBLE);
-
-
-                                    }
-                                }, 500);
-
-                            }
-                        }
-
-                    }
-
-
-
-                    return true;
+                    current++;
                 }
-            });
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    x = motionEvent.getX();
+                    y = motionEvent.getY();
+
+                    //Toast.makeText(getApplicationContext(), String.valueOf(y), Toast.LENGTH_SHORT).show();
+
+                    //if blue is released
+                    if (x > 700 && x < 1240) {
+                        if (y > 1145 && y < 1700) {
+
+                            correct = true;
+
+                            blue_clicked.setVisibility(View.VISIBLE);
+
+                            mHandler.postDelayed(new Runnable() {
+                                //@Override
+                                public void run() {
+                                    blue_clicked.setVisibility(View.INVISIBLE);
 
 
+                                }
+                            }, 500);
+                        }
+                    }
+                    //if green is released
+                    if (x > 140 && x < 699) {
+                        if (y > 1145 && y < 1700) {
+                            correct = true;
 
-        }
+                            green_clicked.setVisibility(View.VISIBLE);
+
+                            mHandler.postDelayed(new Runnable() {
+                                //@Override
+                                public void run() {
+                                    green_clicked.setVisibility(View.INVISIBLE);
 
 
+                                }
+                            }, 500);
 
+                        }
+                    }
+                    //red
+                    if (x > 140 && x < 699) {
+                        if (y > 590 && y < 1144) {
+                            correct = true;
+
+                            red_clicked.setVisibility(View.VISIBLE);
+
+                            mHandler.postDelayed(new Runnable() {
+                                //@Override
+                                public void run() {
+                                    red_clicked.setVisibility(View.INVISIBLE);
+
+
+                                }
+                            }, 500);
+
+                        }
+                    }
+                    //yellow
+                    if (x > 700 && x < 1240) {
+                        if (y > 590 && y < 1144) {
+                            correct = true;
+
+                            yellow_clicked.setVisibility(View.VISIBLE);
+
+                            mHandler.postDelayed(new Runnable() {
+                                //@Override
+                                public void run() {
+                                    yellow_clicked.setVisibility(View.INVISIBLE);
+
+
+                                }
+                            }, 500);
+                        }
+                    }
+
+                }
+                return true;
+            }
+        });
 
     }
 }
