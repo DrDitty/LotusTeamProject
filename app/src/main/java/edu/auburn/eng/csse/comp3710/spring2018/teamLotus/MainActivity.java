@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     boolean correct = true;
     int i = 0;
     final int[] array = new int[9];
+    boolean isLit = false;
 
     /*  TODO: maybe make a loop to keep displaying the patterns
         TODO: And it only plays again if the user input is correct
