@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     int i = 0;
     final int[] array = new int[9];
     boolean isLit = false;
+    boolean isGood = false;
 
     /*  TODO: maybe make a loop to keep displaying the patterns
         TODO: And it only plays again if the user input is correct
@@ -78,72 +79,59 @@ public class MainActivity extends AppCompatActivity {
 
                 if (correct == true) {
 
-                        correct = false;
-                        rand = mRandom.nextInt(4);
-                        array[++i] = rand;
-                        Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
+                    correct = false;
+                    rand = mRandom.nextInt(4);
+                    array[++i] = rand;
+                    Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
 
-                        for (int index = 0; index <= current;index++) {
-                            if (array[index] == 0) {
+                    for (int index = 0; index <= current;) {
+                        if (array[index] == 0) {
+                            if (isLit ==false) {
                                 red_clicked.setVisibility(View.VISIBLE);
+                                isLit = true;
+                                isGood = true;
                                 Toast.makeText(getApplicationContext(), "r", Toast.LENGTH_SHORT).show();
-
-                                if (red_clicked.getVisibility() == View.VISIBLE) {
-                                    /*mTimer.scheduleAtFixedRate(new TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            //Called at every 1000 milliseconds (1 second)
-                                            red_clicked.setVisibility(View.VISIBLE);
-                                        }
-                                    }, 0, 1000);
-                                    mTimer.cancel();*/
-                                }
-                                /*mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        red_clicked.setVisibility(View.INVISIBLE);
-                                        //Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
-                                    }
-                                }, difficulty);*/
                             }
-                            if (array[index] == 1) {
-                                yellow_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "y", Toast.LENGTH_SHORT).show();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        yellow_clicked.setVisibility(View.INVISIBLE);
 
-                                    }
-                                }, difficulty);
-                            }
-                            if (array[index] == 2) {
-                                green_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "g", Toast.LENGTH_SHORT).show();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        green_clicked.setVisibility(View.INVISIBLE);
-
-                                    }
-                                }, difficulty);
-                            }
-                            if (array[index] == 3) {//blue
-                                blue_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "b", Toast.LENGTH_SHORT).show();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        blue_clicked.setVisibility(View.INVISIBLE);
-
-                                    }
-                                }, difficulty);
-
-                            }
-                            }
-                            current++;
-                            i=0;
                         }
+                        if (array[index] == 1) {
+                            if (isLit ==false) {
+                                yellow_clicked.setVisibility(View.VISIBLE);
+                                isLit = true;
+                                isGood = true;
+                                Toast.makeText(getApplicationContext(), "y", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        if (array[index] == 2) {
+                            if (isLit ==false) {
+                                green_clicked.setVisibility(View.VISIBLE);
+                                isLit = true;
+                                isGood = true;
+                                Toast.makeText(getApplicationContext(), "g", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        if (array[index] == 3) {//blue
+                            if (isLit == false) {
+                                blue_clicked.setVisibility(View.VISIBLE);
+                                isLit = true;
+                                isGood = true;
+                                Toast.makeText(getApplicationContext(), "b", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        if (isGood == true) {
+
+                            isGood = checkLit();
+                        }
+                        if (isLit == false ){
+                            index++;
+                        }
+                    }
+                    current++;
+                    i=0;
+                }
                 if (i == current)
                 {
                     correct = true;
@@ -255,4 +243,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private boolean checkLit(){
+
+        if (red_clicked.getVisibility() == View.VISIBLE || yellow_clicked.getVisibility() == View.VISIBLE || green_clicked.getVisibility() == View.VISIBLE || blue_clicked.getVisibility() == View.VISIBLE) {
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    red_clicked.setVisibility(View.INVISIBLE);
+                    yellow_clicked.setVisibility(View.INVISIBLE);
+                    green_clicked.setVisibility(View.INVISIBLE);
+                    blue_clicked.setVisibility(View.INVISIBLE);
+                    isLit = false;
+                    //Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
+                }
+            }, difficulty);
+            return false;
+
+        }
+        else {
+            return true;
+        }
+    }
 }
+
