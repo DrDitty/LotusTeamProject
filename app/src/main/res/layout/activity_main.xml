@@ -7,38 +7,6 @@
     tools:context="edu.auburn.eng.csse.comp3710.spring2018.teamLotus.MainActivity"
     android:id="@+id/myLayout" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="240dp"
-        android:id="@+id/red_button" />
-
-    <Button
-        android:id="@+id/yellow_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/red_button"
-        android:layout_marginEnd="95dp" />
-
-    <Button
-        android:id="@+id/blue_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/red_button"
-        android:layout_marginBottom="241dp" />
-
-    <Button
-        android:id="@+id/green_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/yellow_button"
-        android:layout_alignTop="@+id/blue_button" />
-
     <TextView
         android:id="@+id/highscore"
         android:layout_width="wrap_content"
@@ -47,6 +15,77 @@
         android:layout_centerHorizontal="true"
         android:text="highscore" />
 
+
+
+    <ImageView
+        android:id="@+id/blue_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="117dp"
+        android:layout_marginEnd="56dp"
+        app:srcCompat="@drawable/blue_button" />
+
+    <ImageView
+        android:id="@+id/blue_clicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/blue_button"
+        android:layout_alignTop="@+id/blue_button"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/blue_clicked" />
+
+    <ImageView
+        android:id="@+id/yellow_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blue_button"
+        android:layout_alignEnd="@+id/blue_button"
+        app:srcCompat="@drawable/yellow_button" />
+
+    <ImageView
+        android:id="@+id/red_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blue_button"
+        android:layout_alignStart="@+id/green_button"
+        app:srcCompat="@drawable/red_button" />
+
+    <ImageView
+        android:id="@+id/green_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/blue_button"
+        android:layout_toStartOf="@+id/blue_button"
+        app:srcCompat="@drawable/green_button" />
+
+    <ImageView
+        android:id="@+id/yellow_clicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blue_button"
+        android:layout_alignEnd="@+id/blue_button"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/yellow_clicked" />
+
+    <ImageView
+        android:id="@+id/red_clicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blue_button"
+        android:layout_alignStart="@+id/red_button"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/red_clicked" />
+
+    <ImageView
+        android:id="@+id/green_clicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/blue_button"
+        android:layout_toStartOf="@+id/blue_button"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/green_clicked" />
 
 
 </RelativeLayout>
