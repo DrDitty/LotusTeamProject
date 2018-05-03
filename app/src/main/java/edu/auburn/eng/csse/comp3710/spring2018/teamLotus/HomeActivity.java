@@ -17,31 +17,30 @@ public class HomeActivity extends AppCompatActivity {
 
         final Button easy = findViewById(R.id.easy_button);
         easy.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 Intent myIntent_e = new Intent(HomeActivity.this, MainActivity.class);
-                myIntent_e.putExtra("speed", 10);
+                myIntent_e.putExtra("speed", 3);
                 HomeActivity.this.startActivity(myIntent_e);
             }
-        }
+        });
         final Button medium = findViewById(R.id.medium_button);
         medium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent_m = new Intent(HomeActivity.this, MainActivity.class);
-                myIntent_m.putExtra("speed", 20);
+                myIntent_m.putExtra("speed", 2);
                 HomeActivity.this.startActivity(myIntent_m);
             }
-        });
+            });
         final Button expert = findViewById(R.id.expert_button);
         expert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent_exp = new Intent(HomeActivity.this, MainActivity.class);
-                myIntent_exp.putExtra("speed", 30);
+                myIntent_exp.putExtra("speed", 1);
                 HomeActivity.this.startActivity(myIntent_exp);
             }
-        }
+        });
 
         final ToggleButton mute = findViewById(R.id.sound_toggle);
 
