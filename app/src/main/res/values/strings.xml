@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SimonApp</string>
+    <string name="main_activity">GameScreen</string>
+    <string name="easy">EASY</string>
+    <string name="medium">MEDIUM</string>
+    <string name="expert">EXPERT</string>
 </resources>
