@@ -1,5 +1,6 @@
 package edu.auburn.eng.csse.comp3710.spring2018.teamLotus;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,12 +41,13 @@ public class MainActivity extends AppCompatActivity {
     int current;
     int difficulty;
     boolean soundOff;
-    int highscore;
+    int highscore = 0;
     boolean correct = true;
     int i = 0;
     int[] array = new int[9];
     boolean same = true;
     int rand;
+    Bundle extras = new Bundle();
 
     /*  TODO: maybe make a loop to keep displaying the patterns
         TODO: And it only plays again if the user input is correct
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         high_score = (TextView) findViewById(R.id.highscore);
 
 
+
         blue_clicked = findViewById(R.id.blue_clicked);
         red_clicked = findViewById(R.id.red_clicked);
         yellow_clicked = findViewById(R.id.yellow_clicked);
@@ -87,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
-
+                high_score.setText("Highscore: " + highscore);
 
                 if (correct == true) {
                     rand = mRandom.nextInt(4);
                     array[current] = rand;
                     same = true;
-
+                    highscore++;
 
                     if (i != 0) {
                         i--;
@@ -338,14 +341,16 @@ public class MainActivity extends AppCompatActivity {
 
         game_over.setVisibility(View.VISIBLE);
 
-        highscore = i + 1;
+        highscore--;
         high_score.setText("Highscore: " + highscore);
 
         game_over.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //go back to main menu
-
+                Intent return_home = new Intent(MainActivity.this, HomeActivity.class);
+                extras.putBoolean("sound_off", soundOff);
+                MainActivity.this.startActivity(return_home);
             }
         });
     }

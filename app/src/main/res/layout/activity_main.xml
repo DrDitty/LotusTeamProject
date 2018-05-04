@@ -97,5 +97,19 @@
         android:text="Game Over"
         android:visibility="invisible" />
 
+    <ToggleButton
+        android:id="@+id/sound_toggle"
+        android:layout_width="52dp"
+        android:layout_height="59dp"
+        android:textOn=""
+        android:textOff=""
+        android:checked="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:adjustViewBounds = "false"
+        android:background="@drawable/selector"
+        android:cropToPadding = "false"
+        android:visibility="visible" />
+
 
 </RelativeLayout>
