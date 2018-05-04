@@ -16,14 +16,20 @@ import android.os.Bundle;
 
 public class HomeActivity extends AppCompatActivity {
     short x = 0, y = 0;
+    boolean muted=false;
     Bundle extras = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int currentVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
+        if(currentVolume==0)
+            muted = true;
+        else muted = false;
         final Button easy = findViewById(R.id.easy_button);
+        final boolean finalMuted = muted;
         easy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent_e = new Intent(HomeActivity.this, MainActivity.class);
@@ -31,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
                 y = 10;
                 extras.putFloat("speed", x);
                 extras.putFloat("difficulty", y);
+                extras.putBoolean("sound_off", finalMuted);
                 myIntent_e.putExtras(extras);
                 HomeActivity.this.startActivity(myIntent_e);
             }
@@ -64,12 +71,16 @@ public class HomeActivity extends AppCompatActivity {
 
         final ToggleButton mute = findViewById(R.id.sound_toggle);
         mute.setOnClickListener(new View.OnClickListener() {
-            int x=0;
+            
             @Override
             public void onClick(View view) {
 
 
             }
         });
+    };
+
+    protected void onPause(Bundle savedInstanceState) {
+        super.onPause();
     };
 };
