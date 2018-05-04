@@ -5,9 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 
@@ -22,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView yellow_clicked;
     ImageView green_clicked;
     ImageView blue_clicked;
+    Button game_over;
+    TextView high_score;
     Random mRandom = new Random();
 
 
@@ -31,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     int max;
     int current;
     int difficulty;
+    int highscore;
     boolean correct = true;
     int i = 0;
     int[] array = new int[9];
@@ -56,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         red_button = (ImageView) findViewById(R.id.red_button);
         yellow_button = (ImageView) findViewById(R.id.yellow_button);
         green_button = (ImageView) findViewById(R.id.green_button);
+        game_over = (Button) findViewById(R.id.game_over);
+        high_score = (TextView) findViewById(R.id.highscore);
+
 
         blue_clicked = findViewById(R.id.blue_clicked);
         red_clicked = findViewById(R.id.red_clicked);
@@ -80,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     rand = mRandom.nextInt(4);
                     array[current] = rand;
                     same = true;
+
 
                     if (i != 0) {
                         i--;
@@ -135,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
                         }
                     }
@@ -156,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
 
                         }
@@ -180,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
                         }
                     }
@@ -203,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
                         }
                     }
@@ -240,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
                         }
                     }
@@ -261,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
 
                         }
@@ -285,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
                         }
                     }
@@ -308,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                                 }, 500);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                                gameOver();
                             }
                         }
                     }
@@ -318,6 +331,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void gameOver(){
+
+        game_over.setVisibility(View.VISIBLE);
+
+        highscore = i + 1;
+        high_score.setText("Highscore: " + highscore);
+
+        game_over.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //go back to main menu
+
+            }
+        });
     }
 
     private void lightUp(final int index) {

@@ -87,5 +87,15 @@
         android:visibility="invisible"
         app:srcCompat="@drawable/green_clicked" />
 
+    <Button
+        android:id="@+id/game_over"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:text="Game Over"
+        android:visibility="invisible" />
+
 
 </RelativeLayout>
