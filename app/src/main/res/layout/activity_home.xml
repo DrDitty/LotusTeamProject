@@ -31,7 +31,7 @@
     <Button
         android:id="@+id/medium_button"
         style="@android:style/Widget.Button"
-        android:layout_width="177dp"
+        android:layout_width="231dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/expert_button"
-        android:layout_width="184dp"
+        android:layout_width="233dp"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -58,6 +58,9 @@
         android:id="@+id/sound_toggle"
         android:layout_width="52dp"
         android:layout_height="59dp"
+        android:textOn=""
+        android:textOff=""
+        android:checked="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:adjustViewBounds="false"

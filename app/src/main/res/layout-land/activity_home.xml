@@ -58,6 +58,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:adjustViewBounds="false"
+        android:textOff=""
+        android:textOn=""
         android:background="@drawable/selector"
         android:cropToPadding="false"
         android:visibility="visible" />
