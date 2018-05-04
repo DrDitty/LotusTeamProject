@@ -27,10 +27,10 @@ public class HomeActivity extends AppCompatActivity {
         easy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent_e = new Intent(HomeActivity.this, MainActivity.class);
-                x = 3;
+                x = 3000;
                 y = 10;
-                extras.putShort("speed", x);
-                extras.putShort("difficulty", y);
+                extras.putFloat("speed", x);
+                extras.putFloat("difficulty", y);
                 myIntent_e.putExtras(extras);
                 HomeActivity.this.startActivity(myIntent_e);
             }
@@ -40,10 +40,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent_m = new Intent(HomeActivity.this, MainActivity.class);
-                x = 2;
+                x = 2000;
                 y = 20;
-                extras.putShort("speed", x);
-                extras.putShort("difficulty", y);
+                extras.putFloat("speed", x);
+                extras.putFloat("difficulty", y);
                 myIntent_m.putExtras(extras); //20
                 HomeActivity.this.startActivity(myIntent_m);
             }
@@ -53,10 +53,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent_exp = new Intent(HomeActivity.this, MainActivity.class);
-                x = 1;
+                x = 1000;
                 y = 30;
-                extras.putShort("speed", x);
-                extras.putShort("difficulty", y);
+                extras.putFloat("speed", x);
+                extras.putFloat("difficulty", y);
                 myIntent_exp.putExtras(extras);
                 HomeActivity.this.startActivity(myIntent_exp);
             }

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     final Handler mHandler = new Handler();
     int max;
     int current;
-    short difficulty, speed;
+    float difficulty, speed;
     boolean correct = true;
     int i = 0;
     int[] array = new int[9];
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle data = getIntent().getExtras();
-        speed = data.getShort("speed");
-        difficulty = data.getShort("difficulty");
+        speed = data.getFloat("speed");
+        difficulty = data.getFloat("difficulty");
 
         myLayout = (RelativeLayout) findViewById(R.id.myLayout);
         blue_button = (ImageView) findViewById(R.id.blue_button);
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         max = 9;
 
 
-      //  difficulty = 3000;
         current = 0;
 
 
@@ -242,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        mHandler.postDelayed(r, (difficulty*index));
+        mHandler.postDelayed(r, ((long) speed*index));
 
     }
 
@@ -274,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             };
-            mHandler.postDelayed(runnable, difficulty);
+            mHandler.postDelayed(runnable, (long)speed);
 
                     //Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
 
