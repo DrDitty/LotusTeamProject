@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     int max;
     int current;
     int difficulty;
+    boolean soundOff;
     int highscore;
     boolean correct = true;
     int i = 0;
