@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.util.Random;
+import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     final Handler mHandler = new Handler();
     int max;
     int current;
-    int difficulty;
+    short difficulty, speed;
     boolean correct = true;
     int i = 0;
     int[] array = new int[9];
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getIntent().getIntExtra("speed", difficulty);
+        Bundle data = getIntent().getExtras();
+        speed = data.getShort("speed");
+        difficulty = data.getShort("difficulty");
 
         myLayout = (RelativeLayout) findViewById(R.id.myLayout);
         blue_button = (ImageView) findViewById(R.id.blue_button);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         max = 9;
 
 
-        difficulty = 3000;
+      //  difficulty = 3000;
         current = 0;
 
 

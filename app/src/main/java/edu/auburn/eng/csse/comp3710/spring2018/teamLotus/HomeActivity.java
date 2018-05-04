@@ -18,15 +18,10 @@ public class HomeActivity extends AppCompatActivity {
     short x = 0, y = 0;
     Bundle extras = new Bundle();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        final AudioManager mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-
-        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.colors);
-        mediaPlayer.start();
 
         final Button easy = findViewById(R.id.easy_button);
         easy.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +67,8 @@ public class HomeActivity extends AppCompatActivity {
             int x=0;
             @Override
             public void onClick(View view) {
-                if (mute.isChecked() == true) {
-                    mAudioManager.setStreamVolume(AudioManager.ADJUST_MUTE, 0, 0);
-                } else if (mute.isChecked() == false) {
-                    mAudioManager.setStreamVolume(AudioManager.ADJUST_UNMUTE, 0, 0);
 
-                }
-                ;
+
             }
         });
     };
