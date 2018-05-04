@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Random;
 
 
@@ -30,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private float x;
     private float y;
     final Handler mHandler = new Handler();
-    Timer mTimer = new Timer();
     int max;
     int current;
     int difficulty;
     boolean correct = true;
     int i = 0;
-    final int[] array = new int[9];
-    boolean isLit = false;
+    int[] array = new int[9];
+    boolean same = true;
+    int rand;
 
     /*  TODO: maybe make a loop to keep displaying the patterns
         TODO: And it only plays again if the user input is correct
@@ -75,77 +73,34 @@ public class MainActivity extends AppCompatActivity {
         myLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                int rand;
+
 
 
                 if (correct == true) {
+                    rand = mRandom.nextInt(4);
+                    array[current] = rand;
+                    same = true;
 
-                        correct = false;
-                        rand = mRandom.nextInt(4);
-                        array[++i] = rand;
-                        Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_SHORT).show();
-
-                        for (int index = 0; index <= current;index++) {
-                            if (array[index] == 0) {
-                                red_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "r", Toast.LENGTH_SHORT).show();
-
-                                if (red_clicked.getVisibility() == View.VISIBLE) {
-                                    /*mTimer.scheduleAtFixedRate(new TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            //Called at every 1000 milliseconds (1 second)
-                                            red_clicked.setVisibility(View.VISIBLE);
-                                        }
-                                    }, 0, 1000);
-                                    mTimer.cancel();*/
-                                }
-                                /*mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        red_clicked.setVisibility(View.INVISIBLE);
-                                        //Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
-                                    }
-                                }, difficulty);*/
-                            }
-                            if (array[index] == 1) {
-                                yellow_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "y", Toast.LENGTH_SHORT).show();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        yellow_clicked.setVisibility(View.INVISIBLE);
-
-                                    }
-                                }, difficulty);
-                            }
-                            if (array[index] == 2) {
-                                green_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "g", Toast.LENGTH_SHORT).show();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        green_clicked.setVisibility(View.INVISIBLE);
-
-                                    }
-                                }, difficulty);
-                            }
-                            if (array[index] == 3) {//blue
-                                blue_clicked.setVisibility(View.VISIBLE);
-                                Toast.makeText(getApplicationContext(), "b", Toast.LENGTH_SHORT).show();
-                                mHandler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        blue_clicked.setVisibility(View.INVISIBLE);
-
-                                    }
-                                }, difficulty);
-
-                            }
-                            }
-                            current++;
-                            i=0;
+                    if (i != 0) {
+                        i--;
+                        while (same) {
+                            if (rand == array[i]) {
+                                rand = mRandom.nextInt(4);
+                                array[current] = rand;
+                            } else
+                                same = false;
                         }
+                    }
+
+                    Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
+                    i = 0;
+                    correct = false;
+
+                    for (int index = 0; index <= current; index++) {
+                                lightUp(index);
+                    }
+                    current++;
+                }
                 if (i == current)
                 {
                     correct = true;
@@ -193,8 +148,6 @@ public class MainActivity extends AppCompatActivity {
                                     //@Override
                                     public void run() {
                                         green_clicked.setVisibility(View.INVISIBLE);
-
-
                                     }
                                 }, 500);
                             }
@@ -257,4 +210,73 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void lightUp(final int index) {
+        final Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                switch (array[index]){
+                    case 0:
+                        red_clicked.setVisibility(View.VISIBLE);
+                        //Toast.makeText(getApplicationContext(), "r", Toast.LENGTH_SHORT).show();
+                        turnOffLight(0);
+                        break;
+                    case 1:
+                        yellow_clicked.setVisibility(View.VISIBLE);
+                        //Toast.makeText(getApplicationContext(), "y", Toast.LENGTH_SHORT).show();
+                        turnOffLight(1);
+                        break;
+                    case 2:
+                        green_clicked.setVisibility(View.VISIBLE);
+                        //Toast.makeText(getApplicationContext(), "g", Toast.LENGTH_SHORT).show();
+                        turnOffLight(2);
+                        break;
+                    case 3:
+                        blue_clicked.setVisibility(View.VISIBLE);
+                        //Toast.makeText(getApplicationContext(), "b", Toast.LENGTH_SHORT).show();
+                        turnOffLight(3);
+                        break;
+                }
+            }
+        };
+
+        mHandler.postDelayed(r, (difficulty*index));
+
+    }
+
+    private void turnOffLight(final int num){
+
+        //if (red_clicked.getVisibility() == View.VISIBLE || yellow_clicked.getVisibility() == View.VISIBLE || green_clicked.getVisibility() == View.VISIBLE || blue_clicked.getVisibility() == View.VISIBLE) {
+            final Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    switch (num) {
+                        case 0:
+                            red_clicked.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "off red", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 1:
+                            yellow_clicked.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "off yellow", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 2:
+                            green_clicked.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "off green", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 3:
+                            blue_clicked.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "off blue", Toast.LENGTH_SHORT).show();
+                            break;
+
+                    }
+
+                }
+            };
+            mHandler.postDelayed(runnable, difficulty);
+
+                    //Toast.makeText(getApplicationContext(), Integer.toString(current), Toast.LENGTH_SHORT).show();
+
+       // }
+    }
 }
+
