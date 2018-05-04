@@ -105,11 +105,120 @@ public class MainActivity extends AppCompatActivity {
                 {
                     correct = true;
                 }
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN ){
+
+                    //Toast.makeText(getApplicationContext(), "Daddy Yas", Toast.LENGTH_SHORT).show();
+
+                    x = motionEvent.getX();
+                    y = motionEvent.getY();
+
+
+
+                    //if blue is released
+                    if (x > 700 && x < 1240) {
+                        if (y > 1145 && y < 1700) {
+                            if (array[i] == 3) {
+
+
+                                i++;
+
+                                blue_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        blue_clicked.setVisibility(View.INVISIBLE);
+
+
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    //if green is released
+                    if (x > 140 && x < 699) {
+                        if (y > 1145 && y < 1700) {
+                            if (array[i] == 2) {
+
+                                i++;
+
+                                green_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        green_clicked.setVisibility(View.INVISIBLE);
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }
+                    //red
+                    if (x > 140 && x < 699) {
+                        if (y > 590 && y < 1144) {
+                            if (array[i] == 0) {
+
+                                i++;
+
+                                red_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        red_clicked.setVisibility(View.INVISIBLE);
+
+
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    //yellow
+                    if (x > 700 && x < 1240) {
+                        if (y > 590 && y < 1144) {
+                            if (array[i] == 1) {
+
+                                i++;
+
+                                yellow_clicked.setVisibility(View.VISIBLE);
+
+                                mHandler.postDelayed(new Runnable() {
+                                    //@Override
+                                    public void run() {
+                                        yellow_clicked.setVisibility(View.INVISIBLE);
+
+
+                                    }
+                                }, 500);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "FAKE NEWS", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                }
+
+
+
+
+
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP && !correct) {
                     x = motionEvent.getX();
                     y = motionEvent.getY();
 
-                    //Toast.makeText(getApplicationContext(), String.valueOf(y), Toast.LENGTH_SHORT).show();
+
 
                     //if blue is released
                     if (x > 700 && x < 1240) {
