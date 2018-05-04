@@ -3,6 +3,7 @@ package edu.auburn.eng.csse.comp3710.spring2018.teamLotus;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         final AudioManager mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-       final int current_vol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.colors);
+        mediaPlayer.start();
 
         final Button easy = findViewById(R.id.easy_button);
         easy.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +69,17 @@ public class HomeActivity extends AppCompatActivity {
 
         final ToggleButton mute = findViewById(R.id.sound_toggle);
         mute.setOnClickListener(new View.OnClickListener() {
+            int x=0;
             @Override
             public void onClick(View view) {
-                if (current_vol == 0) {
+                if (mute.isChecked() == true) {
+                    mAudioManager.setStreamVolume(AudioManager.ADJUST_MUTE, 0, 0);
+                } else if (mute.isChecked() == false) {
+                    mAudioManager.setStreamVolume(AudioManager.ADJUST_UNMUTE, 0, 0);
 
-                    mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
-                } else {
-                    mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
                 }
-            };
+                ;
+            }
         });
     };
 };
