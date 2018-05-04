@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.auburn.eng.csse.comp3710.spring2018.teamLotus.HomeActivity">
+
+    <ImageView
+        android:id="@+id/background_color"
+        android:layout_width="match_parent"
+        android:layout_height="602dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/easy_button"
+        style="@android:style/Widget.Button"
+        android:layout_width="171dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/easy"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+        android:textColor="@color/colorAccent"
+        android:textSize="18pt" />
+
+    <Button
+        android:id="@+id/medium_button"
+        style="@android:style/Widget.Button"
+        android:layout_width="177dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorAccent"
+        android:textSize="18pt" />
+
+    <Button
+        android:id="@+id/expert_button"
+        android:layout_width="184dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/expert"
+        android:textColor="@color/colorAccent"
+        android:textSize="18pt" />
+
+    <ToggleButton
+        android:id="@+id/sound_toggle"
+        android:layout_width="52dp"
+        android:layout_height="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:adjustViewBounds="false"
+        android:background="@drawable/selector"
+        android:cropToPadding="false"
+        android:visibility="visible" />
+
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="visible"
+        app:srcCompat="@drawable/simon_logo" />
+
+</RelativeLayout>

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     final Handler mHandler = new Handler();
     int max;
     int current;
-    long difficulty;
+    int difficulty;
     boolean correct = true;
     int i = 0;
     int[] array = new int[9];
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getIntent().getIntExtra("speed", difficulty);
 
         myLayout = (RelativeLayout) findViewById(R.id.myLayout);
         blue_button = (ImageView) findViewById(R.id.blue_button);
